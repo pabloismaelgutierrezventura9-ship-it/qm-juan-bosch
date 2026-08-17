@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Estilos personalizados
+# Estilos personalizados - alto contraste
 st.markdown("""
 <style>
     .main-header {
@@ -33,24 +33,42 @@ st.markdown("""
     }
     .main-header p {
         margin: 0.3rem 0 0 0;
-        opacity: 0.9;
+        opacity: 0.95;
         font-size: 1rem;
+        color: #e2e8f0 !important;
     }
-    .metric-card {
-        background: #f7fafc;
-        border-radius: 10px;
-        padding: 1rem;
-        border-left: 4px solid #2b6cb0;
+
+    /* Métricas con alto contraste */
+    div[data-testid="stMetric"] {
+        background-color: #ffffff !important;
+        border: 1px solid #cbd5e0 !important;
+        border-radius: 10px !important;
+        padding: 14px 16px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
     }
-    .stMetric {
-        background: white;
-        padding: 12px 16px;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    div[data-testid="stMetric"] label {
+        color: #2d3748 !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
     }
+    div[data-testid="stMetric"] [data-testid="stMetricValue"] {
+        color: #1a202c !important;
+        font-weight: 700 !important;
+        font-size: 1.35rem !important;
+    }
+    div[data-testid="stMetric"] [data-testid="stMetricDelta"] {
+        color: #2f855a !important;
+    }
+
+    /* Sidebar */
     div[data-testid="stSidebar"] {
-        background-color: #f8fafc;
+        background-color: #edf2f7 !important;
     }
+    div[data-testid="stSidebar"] * {
+        color: #1a202c !important;
+    }
+
+    /* Login */
     .login-box {
         max-width: 420px;
         margin: 4rem auto;
@@ -59,6 +77,12 @@ st.markdown("""
         border-radius: 16px;
         box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         text-align: center;
+    }
+
+    /* Tablas más legibles */
+    .stDataFrame {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
     }
 </style>
 """, unsafe_allow_html=True)
