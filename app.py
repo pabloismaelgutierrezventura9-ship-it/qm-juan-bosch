@@ -276,7 +276,14 @@ def generar_pdf(df: pd.DataFrame, titulo: str, totales: dict) -> bytes:
     pdf.set_text_color(100, 100, 100)
     pdf.cell(0, 6, "QM Juan Bosch · Sucursal Ciudad Juan Bosch · Republica Dominicana", align="C")
 
-    return pdf.output()
+    # Asegurar bytes puros para Streamlit (compatible con fpdf2)
+    try:
+        output = pdf.output(dest="S")
+    except TypeError:
+        output = pdf.output()
+    if isinstance(output, str):
+        return output.encode("latin-1")
+    return bytes(output)
 
 # ====================== INTERFAZ ======================
 def mostrar_header():
@@ -518,4 +525,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
